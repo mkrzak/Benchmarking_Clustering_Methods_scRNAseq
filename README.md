@@ -20,8 +20,9 @@ Some packages may require manual installation of package dependencies. Check ins
 ## Running the code
 Below we report steps necessary to reproduce the results of our study. Note that running all the pipeline may take a considerable amount of time.  
 
-- Download this repository
-- Unzip and run the main script Benchmarking_Clustering_Methods_scRNAseq.R
+- Download and unzip this repository
+- Change main.path="/PathtoDownloadedRepository/Benchmarking_Clustering_Methods_scRNAseq-master" inside Benchmarking_Clustering_Methods_scRNAseq.R
+- Run Benchmarking_Clustering_Methods_scRNAseq.R script 
 
 <br/>
 

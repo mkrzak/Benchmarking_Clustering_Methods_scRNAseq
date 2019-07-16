@@ -1,3 +1,4 @@
+main.path="/PathtoDownloadedRepository/Benchmarking_Clustering_Methods_scRNAseq-master" #change this directory
 setwd(main.path)
 
 #Import and preprocess Raw datasets
