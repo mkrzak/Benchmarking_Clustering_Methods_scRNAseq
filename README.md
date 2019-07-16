@@ -63,3 +63,8 @@ splatter_1.6.1
 tidyr_0.8.3
 scran_1.10.2
 ```
+
+## Contact
+
+Please report any bugs or issues you will encounter when using this repository. Feel free to contact m.krzak@na.iac.cnr.it for any other queries. 
+
