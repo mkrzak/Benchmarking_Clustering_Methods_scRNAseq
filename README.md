@@ -2,7 +2,7 @@
 
 This repository stores the code used in the study:
 
-M. Krzak, Y. Raykov, A. Boukouvalas, L. Cutillo, C. Angelini, "Benchmark and parameter sensitivity analysis of scRNAseq clustering methods.", Frontiers in Genetics.
+M. Krzak, Y. Raykov, A. Boukouvalas, L. Cutillo, C. Angelini, "Benchmark and parameter sensitivity analysis of scRNAseq clustering methods."
 
 Codes include data import, basic preprocessing, benchmark of scRNAseq clustering methods and analysis of the results. Please note that in order to run the codes you need to install proper versions of the packages that are reported in the article and section below. We cannot guarantee that the results will be generated properly if any other package versions will be used.  
 

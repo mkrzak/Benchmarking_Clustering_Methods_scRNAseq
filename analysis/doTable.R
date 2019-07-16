@@ -30,7 +30,7 @@ doTable <- function(files){
     
   
     #ARI
-    if(is.null(Result)==TRUE){ ##########################CHANGEEEE  | length(Result) < length(true_labels)
+    if(is.null(Result)==TRUE){
       ari[i]=NA
       run_time_min[i]=NA
       nr_clusters[i]=NA
