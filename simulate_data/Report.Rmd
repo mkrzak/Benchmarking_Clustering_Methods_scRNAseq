@@ -1,0 +1,58 @@
+---
+title: "Report for simulated scRNAseq datasets"
+author: "Monika Krzak"
+date: "November 23, 2018"
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r cars, echo=FALSE, include=FALSE}
+library(scater)
+```
+
+## Dataset
+
+```{r, echo=FALSE}
+fname
+```
+
+## Dataset size
+
+```{r,  echo=FALSE}
+paste0("Number of cells: ", dim(sce)[2])
+paste0("Number of genes: ", dim(sce)[1])
+```
+
+## Group balance
+
+```{r,  echo=FALSE}
+table(sce$Group)
+```
+
+## Dropout rate
+
+```{r,  echo=FALSE}
+dropout_rate <- function(x){(length(which(x==0))/dim(sce)[1])*100}
+rate=apply(counts(sce), 2, dropout_rate)
+hist(rate, breaks = 30)
+```
+
+
+## PCA
+
+```{r,  echo=FALSE, warning=FALSE, comment=FALSE}
+scater::plotPCA(sce, colour_by="Group")
+```
+
+## tSNE
+
+```{r,  echo=FALSE, warning=FALSE, comment=FALSE}
+scater::plotTSNE(sce, colour_by="Group", run_args=list(seed = 111))
+```
+
+
+

@@ -1,0 +1,31 @@
+# nGenes[10000]- The number of genes to simulate.
+# nCells[100] - The number of cells to simulate.
+# seed[644049] - Seed to use for generating random numbers.
+# nBatches [1]- The number of batches to simulate.
+# batchCells[100] - The number of cells in each batch.
+# batch.facLoc [0.1]- Location (meanlog) parameter for the batch effects factor log-normal distribution.
+# batch.facScale [0.1]- Scale (sdlog) parameter for the batch effects factor log-normal distribution.
+# mean.shape [0.3]- Shape parameter for the mean gamma distribution.
+# mean.rate [0.6]- Rate parameter for the mean gamma distribution.
+# lib.loc [11]- Location (meanlog) parameter for the library size log-normal distribution, or mean for the normal distribution.
+# lib.scale [0.2]- Scale (sdlog) parameter for the library size log-normal distribution, or sd for the normal distribution.
+# out.prob [0.05]- Probability that a gene is an expression outlier.
+# out.facLoc [4]- Location (meanlog) parameter for the expression outlier factor log-normal distribution.
+# out.facScale [0.5]- Scale (sdlog) parameter for the expression outlier factor log-normal distribution.
+# nGroups [1]- The number of groups or paths to simulate.
+# group.prob [1]- The probabilities that cells come from particular groups.
+# de.prob [0.1]- Probability that a gene is differentially expressed in each group or path.
+# de.downProb [0.5]- Probability that a differentially expressed gene is down-regulated.
+# de.facLoc [0.1]- Location (meanlog) parameter for the differential expression factor log-normal distribution.
+# de.facScale [0.4]- Scale (sdlog) parameter for the differential expression factor log-normal distribution.
+# bcv.common [0.1]- Underlying common dispersion across all genes.
+# bcv.df [60]- Degrees of Freedom for the BCV inverse chi-squared distribution.
+# dropout.mid [0]- Midpoint parameter for the dropout logistic function.
+# dropout.shape [-1]- Shape parameter for the dropout logistic function.
+# path.from [0]- Vector giving the originating point of each path.
+# path.length [100]- Vector giving the number of steps to simulate along each path.
+# path.skew [0.5]- Vector giving the skew of each path.
+# path.nonlinearProb [0.1]- Probability that a gene changes expression in a non-linear way along the differentiation path.
+# path.sigmaFac [0.8]- Sigma factor for non-linear gene paths.
+
+

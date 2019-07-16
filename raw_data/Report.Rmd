@@ -1,0 +1,178 @@
+---
+title: "Preprocessing of scRNASeq datasets"
+author: "Monika Krzak"
+date: "November 5, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r cars, echo=FALSE, include=FALSE}
+library(scater)
+```
+
+## Dataset
+
+```{r, echo=FALSE}
+sub('\\.Rdata$', '',  unlist(strsplit(data[i], "/"))[length(unlist(strsplit(data[i], "/")))] )
+```
+
+## **** Quality control **** 
+
+### Filter ERCC spike-ins 
+TRUE - spike-in\
+FALSE - not spike-in
+
+```{r, echo=FALSE}
+table(grepl("^ERCC-", rownames(sce)))
+if(length(unique((grepl("^ERCC-", rownames(sce)))))==2){
+    sce=sce[-which(grepl("^ERCC-", rownames(sce))),]
+}
+
+```
+
+### Filter duplicated genes
+TRUE - duplicated\
+FALSE - not duplicated
+
+
+```{r, echo=FALSE}
+table(duplicated(rowData(sce)$feature_symbol))
+sce <- sce[!duplicated(rowData(sce)$feature_symbol), ]
+```
+
+### Filter not expressed genes
+FALSE - not expressed genes\
+TRUE - expressed genes
+
+```{r, echo=FALSE}
+keep_genes <- rowSums(counts(sce) > 0) > 0
+sce <- sce[keep_genes, ]
+table(keep_genes)
+```
+
+### Total counts
+
+```{r, echo=FALSE, include=FALSE, warning=FALSE}
+sce <- calculateQCMetrics(sce)
+```
+
+```{r, echo=FALSE, warning=FALSE, comment=FALSE}
+hist(sce$total_counts,breaks = 100)
+```
+
+### Number of detected genes
+
+```{r, echo=FALSE}
+hist(sce$total_features_by_counts,breaks = 100)
+```
+
+### Filter outlier cells
+Filter cells with total counts and number of detected features more than 3 median absolute deviations (MADs) below the median across all the cells (on log scale). 
+
+TRUE - outlier\
+FALSE - not outlier
+
+```{r, echo=FALSE, warning=FALSE}
+colData(sce)$libsize.drop <- isOutlier(sce$total_counts, nmads = 3, type = "lower", log = TRUE)
+colData(sce)$feature.drop <- isOutlier(sce$total_features_by_counts, nmads = 3, type = "lower", log =TRUE)
+sce <- sce[, !(sce$libsize.drop | sce$feature.drop)]
+table(sce$libsize.drop | sce$feature.drop)
+```
+
+### Dimension after quality control
+
+```{r, echo=FALSE}
+paste0("Number of genes: ", dim(sce)[1])
+paste0("Number of cells: ", dim(sce)[2])
+```
+
+### Save qc dataset 
+
+```{r, echo=FALSE}
+save(sce, file=paste0("Rdata_qc/", unlist(strsplit(data[i], "/"))[length(unlist(strsplit(data[i], "/")))]))
+```
+
+## **** First preprocessing: filtering after quality control ****
+
+### Filter genes 
+Filter genes with average expression count (adjusted by library size) equal to 0
+
+```{r, echo=FALSE}
+rowData(sce)$ave.counts <- calcAverage(sce, exprs_values = "counts", use_size_factors=FALSE)
+to.keep <- rowData(sce)$ave.counts > 0
+sce <- sce[to.keep,]
+```
+
+### Dimension after filtering
+
+```{r, echo=FALSE}
+paste0("Number of genes: ", dim(sce)[1])
+paste0("Number of cells: ", dim(sce)[2])
+paste0("Number of groups: ",length(unique(sce$Group)))
+
+
+```
+
+### Save filtered and qc dataset 
+
+```{r, echo=FALSE}
+save(sce, file=paste0("Rdata_qc_filt/", unlist(strsplit(data[i], "/"))[length(unlist(strsplit(data[i], "/")))]))
+```
+
+## **** Second preprocessing: normalization after filtering and quality control ****
+
+### Normalize dataset
+
+```{r, echo=FALSE}
+library(scran)
+set.seed(100)
+if(dim(sce)[2]<500){
+ min.size=50   
+} else {
+ min.size=200   
+}
+
+clusters <- quickCluster(sce, min.size=min.size, min.mean=0.1, method="igraph")
+sce <- computeSumFactors(sce, cluster=clusters, min.mean=0.1)
+summary(sizeFactors(sce))
+sce <- scater::normalize(sce, return_log = FALSE)
+counts(sce) <- normcounts(sce) #assign normalized counts to slot counts
+
+```
+
+### Save normalized, filtered and qc dataset 
+
+```{r, echo=FALSE}
+save(sce, file=paste0("Rdata_qc_filt_norm/", unlist(strsplit(data[i], "/"))[length(unlist(strsplit(data[i], "/")))]))
+```
+
+### PCA 
+PCA on log2 transformed normalized dataset
+```{r, echo=FALSE}
+logcounts(sce) <- log2(normcounts(sce)+1)
+scater::plotPCA(sce, colour_by="Group")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

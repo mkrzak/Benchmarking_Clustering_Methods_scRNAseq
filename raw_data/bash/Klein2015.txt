@@ -1,0 +1,8 @@
+#!/bin/bash
+
+cd raw_data/temp
+
+wget -O klein.tar 'http://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE65525&format=file'
+mkdir new
+tar xvC new -f klein.tar
+bzip2 -d new/*
