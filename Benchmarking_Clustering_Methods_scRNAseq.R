@@ -1,4 +1,3 @@
-main.path="/media/monika/6F76-2B59/Benchmarking_Clustering_Methods_scRNAseq"
 setwd(main.path)
 
 #Import and preprocess Raw datasets
