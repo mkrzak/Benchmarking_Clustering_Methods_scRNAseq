@@ -1,4 +1,5 @@
-main.path="/PathtoDownloadedRepository/Benchmarking_Clustering_Methods_scRNAseq-master" #change this directory
+main.path="/media/monika/6F76-2B59/Benchmarking_Clustering_Methods_scRNAseq"
+#main.path="/PathtoDownloadedRepository/Benchmarking_Clustering_Methods_scRNAseq-master" #change this directory
 setwd(main.path)
 
 #Import and preprocess Raw datasets
@@ -17,7 +18,7 @@ source("benchmark/benchmark.R")
 
 #Analyze results
 library(evaluate)
-rapply((evaluate(file("analysis/analysis.R"))), cat)
+rapply((evaluate(file("analysis/makeFigures.R"))), cat)
 
 
 
