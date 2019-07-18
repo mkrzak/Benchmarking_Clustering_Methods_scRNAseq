@@ -40,7 +40,7 @@ Benchmarking_Clustering_Methods_scRNAseq.R will execute the sequence of followin
 
 "benchmark.R" - runs specific parameter combinations on each type of the dataset (see Clustering_scheme.jpg). Results, in terms of clustering output and additional information such as run time of the algorithm, will be stored in .Rdata format (with the name of the method followed by its parameter combination) in Results_raw_data, Results_norm_data, and Results_simulate_data folders 
 
-"produce_figures.R" - produces all the figures mentioned in the article and stored them in the analysis/plots folder
+"makeFigures.R" - produces figures and supplementary figures from the article
 
 Note that scripts for raw and RPKM/FPKM data preprocessing and data simulation will produce additional .html report files, each one per dataset, with a detailed description of data preprocessing steps.
 

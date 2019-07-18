@@ -2,7 +2,7 @@
 #Packages
 packages <- c("ascend", "cidr", "Linnorm", "monocle", "reticulate", "pcaReduce", "RaceID", "SC3", "Seurat", "SIMLR", 
               "sincell", "sscClust", "TSCAN", "DIMMSC", "ggplot2", "ggfortify", "GGally", "dplyr", "ComplexHeatmap", 
-              "evaluate", "scater", "mclust", "SingleCellExperiment", "splatter", "tidyr", "scran")
+              "evaluate", "scater", "mclust", "SingleCellExperiment", "splatter", "tidyr", "scran", "WriteXLS")
 
 for(i in 1:length(packages)){
 if (length(setdiff(packages[i], rownames(installed.packages()))) > 0) {
