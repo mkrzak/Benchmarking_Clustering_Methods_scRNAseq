@@ -42,6 +42,8 @@ Benchmarking_Clustering_Methods_scRNAseq.R will execute the sequence of followin
 
 "makeFigures.R" - produces figures and supplementary figures from the article
 
+"makeTables.R" - produces supplementary tables from the article
+
 Note that scripts for raw and RPKM/FPKM data preprocessing and data simulation will produce additional .html report files, each one per dataset, with a detailed description of data preprocessing steps.
 
 ## Minimum system requirements
